@@ -11,7 +11,9 @@
         </p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-          <button class="btn btn-primary">구입하기</button>
+        <button class="btn btn-primary" @click="addToCart(item.id)">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </button>
         </div>
         <small class="price text-muted" style="text-decoration: line-through;">
           {{ lib.getNumberFormatted(item.price) }}원
@@ -25,6 +27,7 @@
 </template>
 <script>
 import lib from "@/script/lib";
+import axios from "axios";
 
 export default {
   name: "Card",
@@ -32,7 +35,15 @@ export default {
     item: Object
   },
   setup() {
-    return {lib}
+    // eslint-disable-next-line no-unused-vars
+    const addToCart = (itemId)=>{
+      // eslint-disable-next-line no-unused-vars
+      axios.post(`/api/cart/items/${itemId}`).then((res)=>{
+        console.log(itemId);
+        console.log("success");
+      })
+    };
+    return {lib,addToCart}
   }
 }
 </script>

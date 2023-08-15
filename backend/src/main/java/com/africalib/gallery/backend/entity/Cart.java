@@ -14,7 +14,7 @@ public class Cart {
     private int id;
 
     @Column
-    private int membrId;
+    private int memberId;
 
     @Column
     private int itemId;
